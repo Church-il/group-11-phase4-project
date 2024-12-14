@@ -1,0 +1,51 @@
+/* src/components/UserProfile.css */
+
+.UserProfile {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h2 {
+  color: #007b5f;
+  text-align: center;
+}
+
+.user-details, .user-projects, .user-impact {
+  margin-bottom: 20px;
+}
+
+.user-details p, .user-projects p, .user-impact p {
+  font-size: 1rem;
+  color: #333;
+}
+
+.profile-picture img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+button {
+  margin-top: 10px;
+  background-color: #007b5f;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #005f43;
+}
+
+.error {
+  color: red;
+  font-size: 1rem;
+  text-align: center;
+}
