@@ -1,0 +1,8 @@
+#!/home/michael/Development/code/phase_4/group-11-phase4-project/backend/group-11-phase4-project-6onzm_Ss/bin/python3
+# -*- coding: utf-8 -*-
+import re
+import sys
+from mako.cmd import cmdline
+if __name__ == '__main__':
+    sys.argv[0] = re.sub(r'(-script\.pyw|\.exe)?$', '', sys.argv[0])
+    sys.exit(cmdline())

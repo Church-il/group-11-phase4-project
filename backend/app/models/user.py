@@ -1,5 +1,5 @@
 from app import db, bcrypt
-from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+from itsdangerous import URLSafeTimedSerializer as Serializer
 from flask import current_app
 
 class User(db.Model):
