@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@300;400;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-brand-background text-brand-text;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Custom Button Styles */
+.btn-primary {
+  @apply bg-brand-primary text-white px-6 py-3 rounded-lg shadow-md transition-all duration-300 
+         hover:bg-blue-600 hover:shadow-lg active:scale-95 
+         focus:outline-none focus:ring-2 focus:ring-brand-primary;
+}
+
+.btn-secondary {
+  @apply bg-brand-secondary text-white px-6 py-3 rounded-lg shadow-md transition-all duration-300 
+         hover:bg-green-600 hover:shadow-lg active:scale-95 
+         focus:outline-none focus:ring-2 focus:ring-brand-secondary;
+}
+
+/* Card Hover Effect */
+.card-hover {
+  @apply transition-all duration-300 transform hover:scale-105 hover:shadow-xl;
+}
+
+/* Input Styles */
+.input-field {
+  @apply w-full px-4 py-3 border border-gray-300 rounded-lg 
+         focus:outline-none focus:ring-2 focus:ring-brand-accent 
+         transition-all duration-300;
+}
