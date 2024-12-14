@@ -58,7 +58,7 @@ We believe in the power of information. That's why we've added interactive chart
   - `profile_picture`
   - `role`
   - `location`
-- **What it does:** A user can create many projects. These projects are tied to the user's location (like **Kiambu** or **Nairobi**), ensuring everything stays local and relevant.
+- **What it does:** A user can create projects. These projects are tied to the user's location (like **Kiambu** or **Nairobi**), ensuring everything stays local and relevant.
 
 ### 2. Project Model
 
