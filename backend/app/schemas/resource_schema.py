@@ -1,5 +1,10 @@
-from marshmallow import Schema, fields
+from app import ma
 
-class ResourceSchema(Schema):
-    id = fields.Int(dump_only=True)
-    name = fields.Str(required=True)
+class ResourceSchema(ma.Schema):
+    id = ma.Integer(dump_only=True)
+    name = ma.String(required=True)
+    description = ma.String()
+    project_id = ma.Integer(required=True)
+
+resource_schema = ResourceSchema()
+resources_schema = ResourceSchema(many=True)

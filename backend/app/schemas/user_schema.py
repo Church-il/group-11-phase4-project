@@ -1,8 +1,11 @@
 from app import ma
-from app.models.user import User
 
-class UserSchema(ma.SQLAlchemyAutoSchema):
-    class Meta:
-        model = User
-        include_relationships = True
-        load_instance = True
+class UserSchema(ma.Schema):
+    id = ma.Integer(dump_only=True)
+    name = ma.String(required=True)
+    email = ma.String(required=True)
+    projects = ma.Nested('ProjectSchema', many=True, only=['id', 'title'])
+    memberships = ma.Nested('MembershipSchema', many=True, exclude=['user'])
+
+user_schema = UserSchema()
+users_schema = UserSchema(many=True)

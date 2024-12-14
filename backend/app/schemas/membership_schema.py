@@ -1,5 +1,9 @@
-from marshmallow import Schema, fields
+from app import ma
 
-class MembershipSchema(Schema):
-    id = fields.Int(dump_only=True)
-    role = fields.Str(required=True)
+class MembershipSchema(ma.Schema):
+    id = ma.Integer(dump_only=True)
+    user_id = ma.Integer(required=True)
+    project_id = ma.Integer(required=True)
+
+membership_schema = MembershipSchema()
+memberships_schema = MembershipSchema(many=True)
