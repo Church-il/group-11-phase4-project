@@ -3,11 +3,13 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from flask_bcrypt import Bcrypt
 from flask_cors import CORS  
+from flask_jwt_extended import JWTManager
 
 # Initialize extensions
 db = SQLAlchemy()
 ma = Marshmallow()
 bcrypt = Bcrypt()
+jwt = JWTManager()
 
 def create_app():
     app = Flask(__name__)
@@ -28,9 +30,9 @@ def create_app():
     from app.routes.project_routes import project_bp
     from app.routes.membership_routes import membership_bp
 
-    app.register_blueprint(auth_bp, url_prefix='/api/auth')
-    app.register_blueprint(user_bp, url_prefix='/api/users')
-    app.register_blueprint(project_bp, url_prefix='/api/projects')
-    app.register_blueprint(membership_bp, url_prefix='/api/memberships')
+    app.register_blueprint(auth_bp, url_prefix='http://localhost:5000/api/auth')
+    app.register_blueprint(user_bp, url_prefix='http://localhost:5000/api/users')
+    app.register_blueprint(project_bp, url_prefix='http://localhost:5000/api/projects')
+    app.register_blueprint(membership_bp, url_prefix='http://localhost:5000/api/memberships')
 
     return app

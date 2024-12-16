@@ -21,5 +21,15 @@ def login():
     user = User.query.filter_by(email=data["email"]).first()
     if user and user.check_password(data["password"]):
         token = user.get_token()
-        return jsonify({"token": token})
+        return jsonify({"token": token, "user": {"id": user.id, "name": user.name, "email": user.email}})
     return jsonify({"message": "Invalid credentials"}), 401
+
+@auth_bp.route("/validate-token", methods=["POST"])
+def validate_token():
+    token = request.headers.get('Authorization').split(" ")[1]
+    if not token:
+        return jsonify({"message": "Token missing"}), 400
+    user = User.verify_token(token)
+    if not user:
+        return jsonify({"valid": False}), 401
+    return jsonify({"valid": True, "user": {"id": user.id, "name": user.name, "email": user.email}})

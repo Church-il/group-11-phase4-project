@@ -7,7 +7,6 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
-  // Use useCallback to memoize the validateToken function
   const validateToken = useCallback(async (token) => {
     try {
       const response = await fetch('http://localhost:5000/validate-token', {
@@ -26,10 +25,9 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       logout();
     }
-  }, []); // Empty dependency array as it doesn't depend on external variables
+  }, []);
 
   useEffect(() => {
-    // Check for existing token on initial load
     const token = localStorage.getItem('token');
     if (token) {
       validateToken(token);
