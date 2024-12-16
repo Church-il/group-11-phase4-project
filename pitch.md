@@ -2,7 +2,8 @@
 
 ## Summary
 
-RenewableConnect Kenya is a transformative web platform designed to revolutionize renewable energy engagement across Kenya by connecting communities, resources, and sustainable project opportunities.
+Welcome to the future of renewable energy in Kenya. RenewableConnect Kenya is a revolutionary web platform that connects communities,resources, and sustainable project opportunities, driving a brighter future for
+our nation.
 
 ## The Problem
 
@@ -62,7 +63,7 @@ A comprehensive web application that:
 - Nakuru
 - Nairobi
 - Kisumu
-- Expanding nationwide
+- Expanding nationwide (with time)
 
 ### Impact Projection
 - Accelerate local renewable energy projects
