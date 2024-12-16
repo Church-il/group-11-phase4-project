@@ -28,20 +28,6 @@
   color: #61dafb;
 }
 
-/* Styling for active navigation links */
-.active-link {
-  color: #f39c12; /* Example active color */
-  font-weight: bold;
-}
-
-/* Footer Styles */
-.App-footer {
-  background-color: #222;
-  color: #fff;
-  padding: 20px;
-  text-align: center;
-}
-
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
