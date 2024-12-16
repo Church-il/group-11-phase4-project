@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from flask_bcrypt import Bcrypt
@@ -30,9 +30,9 @@ def create_app():
     from app.routes.project_routes import project_bp
     from app.routes.membership_routes import membership_bp
 
-    app.register_blueprint(auth_bp, url_prefix='http://localhost:5000/api/auth')
-    app.register_blueprint(user_bp, url_prefix='http://localhost:5000/api/users')
-    app.register_blueprint(project_bp, url_prefix='http://localhost:5000/api/projects')
-    app.register_blueprint(membership_bp, url_prefix='http://localhost:5000/api/memberships')
+    app.register_blueprint(auth_bp, url_prefix='/api/auth')
+    app.register_blueprint(user_bp, url_prefix='/api/users')
+    app.register_blueprint(project_bp, url_prefix='/api/projects')
+    app.register_blueprint(membership_bp, url_prefix='/api/memberships')
 
     return app

@@ -4,7 +4,7 @@ from app import db
 
 auth_bp = Blueprint("auth", __name__)
 
-@auth_bp.route("/register", methods=["POST"])
+@auth_bp.route("/register", methods=["POST"], strict_slashes=False)
 def register():
     data = request.get_json()
     if User.query.filter_by(email=data["email"]).first():
@@ -15,7 +15,7 @@ def register():
     db.session.commit()
     return jsonify({"message": "User registered successfully"}), 201
 
-@auth_bp.route("/login", methods=["POST"])
+@auth_bp.route("/login", methods=["POST"], strict_slashes=False)
 def login():
     data = request.get_json()
     user = User.query.filter_by(email=data["email"]).first()
@@ -24,7 +24,7 @@ def login():
         return jsonify({"token": token, "user": {"id": user.id, "name": user.name, "email": user.email}})
     return jsonify({"message": "Invalid credentials"}), 401
 
-@auth_bp.route("/validate-token", methods=["POST"])
+@auth_bp.route("/validate-token", methods=["POST"], strict_slashes=False)
 def validate_token():
     token = request.headers.get('Authorization').split(" ")[1]
     if not token:

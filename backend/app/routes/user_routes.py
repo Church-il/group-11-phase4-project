@@ -1,18 +1,29 @@
-from flask_jwt_extended import jwt_required, get_jwt_identity
-from flask import Blueprint, jsonify
+from flask import Blueprint, request, jsonify
 from app.models.user import User
+from app import db, bcrypt
 
 user_bp = Blueprint("user", __name__)
 
-@user_bp.route("/", methods=["GET"])
-@jwt_required()
-def get_all_users():
-    users = User.query.all()
-    return jsonify([{"id": user.id, "name": user.name, "email": user.email} for user in users])
+@user_bp.route("/register", methods=["POST"], strict_slashes=False)
+def register_user():
+    data = request.get_json()
+    
+    name = data.get("name")
+    email = data.get("email")
+    password = data.get("password")
 
-@user_bp.route("/profile", methods=["GET"])
-@jwt_required()
-def get_profile():
-    current_user = get_jwt_identity()
-    user = User.query.get(current_user["id"])
-    return jsonify({"id": user.id, "name": user.name, "email": user.email})
+    if not name or not email or not password:
+        return jsonify({"message": "Missing required fields"}), 400
+
+    # Check if the user already exists
+    existing_user = User.query.filter_by(email=email).first()
+    if existing_user:
+        return jsonify({"message": "User with this email already exists"}), 400
+
+    # Create and save the new user
+    new_user = User(name=name, email=email)
+    new_user.set_password(password)
+    db.session.add(new_user)
+    db.session.commit()
+
+    return jsonify({"message": "User registered successfully"}), 201
