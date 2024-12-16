@@ -16,4 +16,12 @@ Welcome to *RenewableConnect Kenya* – a platform that's here to help Kenyan co
 
 Our mission is simple: to make *Kenya* a global leader in renewable energy. With the help of this platform, communities can find, contribute to, and benefit from clean energy projects. Whether you're living in a rural area or a bustling city, RenewableConnect is here to empower you, connect you with the resources you need, and make sure everyone has a chance to be a part of Kenya's green transformation.
 
+## 🖥 Tech Stack
+
+We built this platform using some of the best tools out there:
+
+- *Frontend:* React, React Router, Formik
+- *Backend:* Flask, SQLAlchemy
+- *Database:* PostgreSQL
+- *API Communication:* Fetch API for client-server interactions
 
