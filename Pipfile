@@ -6,6 +6,13 @@ name = "pypi"
 [packages]
 pipenv = "*"
 shell = "*"
+flask = "*"
+flask-sqlalchemy = "*"
+flask-marshmallow = "*"
+flask-bcrypt = "*"
+marshmallow-sqlalchemy = "*"
+flask-cors = "*"
+flask-migrate = "*"
 
 [dev-packages]
 
