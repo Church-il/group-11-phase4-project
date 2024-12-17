@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';  // Import useNavigate
 
 function Register() {
   const [formData, setFormData] = useState({ name: '', email: '', password: '' });
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();  // Use navigate instead of history
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -11,9 +14,32 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    // Registration logic
-    console.log('Form submitted', formData);
-    setLoading(false);
+    setError(null);
+
+    try {
+      const response = await fetch('http://127.0.0.1:5000/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Registration failed');
+      }
+
+      console.log('Registration successful', data);
+      navigate('/login');  // Redirect to login page after registration
+
+    } catch (err) {
+      setError(err.message || 'An error occurred during registration');
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -45,6 +71,7 @@ function Register() {
             onChange={handleChange}
             className="w-full p-2 border rounded"
           />
+          {error && <p className="text-red-500 text-sm">{error}</p>}
           <button type="submit" className="w-full bg-green-500 text-white py-2 rounded">
             {loading ? 'Registering...' : 'Register'}
           </button>

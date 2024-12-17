@@ -1,10 +1,10 @@
-const API_BASE_URL = 'http://localhost:5000';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 
 const getHeaders = () => {
   const token = localStorage.getItem('token');
   return {
     'Content-Type': 'application/json',
-    ...(token && { 'Authorization': `Bearer ${token}` })
+    ...(token && { 'Authorization': `Bearer ${token}` }),
   };
 };
 
@@ -12,7 +12,7 @@ export const fetchProjects = async () => {
   try {
     const response = await fetch(`${API_BASE_URL}/projects`, {
       method: 'GET',
-      headers: getHeaders()
+      headers: getHeaders(),
     });
 
     if (!response.ok) {
@@ -22,7 +22,7 @@ export const fetchProjects = async () => {
     return await response.json();
   } catch (error) {
     console.error('Error fetching projects:', error);
-    return []; // Return an empty array to prevent app from breaking
+    return []; // Return an empty array to prevent the app from breaking
   }
 };
 
@@ -30,7 +30,7 @@ export const fetchResources = async () => {
   try {
     const response = await fetch(`${API_BASE_URL}/resources`, {
       method: 'GET',
-      headers: getHeaders()
+      headers: getHeaders(),
     });
 
     if (!response.ok) {
@@ -40,6 +40,6 @@ export const fetchResources = async () => {
     return await response.json();
   } catch (error) {
     console.error('Error fetching resources:', error);
-    return []; // Return an empty array to prevent app from breaking
+    return []; // Return an empty array to prevent the app from breaking
   }
 };

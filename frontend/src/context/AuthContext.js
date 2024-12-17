@@ -7,11 +7,17 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
+  const logout = useCallback(() => {
+    setUser(null);
+    localStorage.removeItem('token');
+    navigate('/');
+  }, [navigate]);
+
   const validateToken = useCallback(async (token) => {
     try {
       const response = await fetch('http://localhost:5000/validate-token', {
         method: 'POST',
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         }
@@ -25,7 +31,7 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       logout();
     }
-  }, []);
+  }, [logout]);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -41,11 +47,11 @@ export const AuthProvider = ({ children }) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(credentials),
       });
-      
+
       if (!response.ok) {
         throw new Error('Login failed');
       }
-      
+
       const data = await response.json();
       setUser(data.user);
       localStorage.setItem('token', data.token);
@@ -54,12 +60,6 @@ export const AuthProvider = ({ children }) => {
       console.error('Login error:', error);
       alert('Login failed. Please check your credentials.');
     }
-  };
-
-  const logout = () => {
-    setUser(null);
-    localStorage.removeItem('token');
-    navigate('/');
   };
 
   return (
